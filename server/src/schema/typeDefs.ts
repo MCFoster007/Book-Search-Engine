@@ -1,72 +1,68 @@
-typeDefs import {gql} from 'graphql-tag'
+import { gql } from 'graphql-tag';
 
-const typeDefs = gql
-
-type Book {
+const typeDefs = gql`
+  # Types
+  type Book {
+    id: ID!
     title: String!
     author: String!
-}
+  }
 
-
-type Role {
+  type Role {
     name: String!
-}
+  }
 
-
-input CreateUser {
+  type User {
+    id: ID!
     name: String!
     age: Int!
     isAuthor: Boolean
-    role: String!  # role as a string
-}
+    role: String!
+    savedBooks: [Book] # Relation: A user can save books
+  }
 
-input UpdateUser {
+  # Input Types
+  input CreateUserInput {
+    name: String!
+    age: Int!
+    isAuthor: Boolean
+    role: String!
+  }
+
+  input UpdateUserInput {
     id: ID!
     name: String
     age: Int
     isAuthor: Boolean
     role: String
-}
+  }
 
-input DeleteUser {
+  input DeleteUserInput {
     id: ID!
-}
+  }
 
-
-type User {
-    name: String!
-    age: Int!
-    isAuthor: Boolean
-    role: String!
-}
-
-
-input saveBook {
+  input SaveBookInput {
     id: ID!
     title: String!
     author: String!
-    isAuthor: Boolean
-    role: String!  # role as a string
-}
+  }
 
+  # Queries
+  type Query {
+    books: [Book]                     # Fetch all books
+    returnBook: Book                  # Return a single book
+    user(id: ID!): User!              # Fetch a user by ID
+    userByName(name: String!): User!  # Fetch a user by name
+  }
 
-type Query {
-    returnBook: Book
-    user(id: ID!): User!
-    userByName(name: String!): User!
-    books: [Book]
-}
+  # Mutations
+  type Mutation {
+    createUser(newUser: CreateUserInput!): User       # Create a new user
+    updateUser(updatedUser: UpdateUserInput!): User  # Update an existing user
+    deleteUser(delUser: DeleteUserInput!): User      # Delete a user
+    saveBook(userId: ID!, book: SaveBookInput!): User # Save a book for a user
+  }
+`;
 
+export default typeDefs;
 
-type Mutation {
-    createUser(newUser: CreateUser!): User
-    updateUser(updatedUser: UpdateUser!): User
-    deleteUser(delUser: DeleteUser!): User
-}
-
-
-
-
-;
-
-export default typeDefs
