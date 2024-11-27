@@ -1,6 +1,6 @@
 
 import express, { Request, Response, NextFunction } from 'express';
-import bcrypt from 'bcrypt.js';
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
@@ -12,6 +12,7 @@ app.use(express.json());
 
 let users: Array<{ username: string; email: string; password: string; _id: number }> = [];
 let currentId = 1;
+console.log('JWT_SECRET_KEY:', process.env.JWT_SECRET_KEY);
 
 
 interface JwtPayload {
@@ -25,7 +26,7 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
 
   if (authHeader) {
     const token = authHeader.split(' ')[1];
-    const secretKey = process.env.JWT_SECRET_KEY || '';
+    const secretKey = process.env.JWT_SECRET_KEY || 'default secret';
 
     jwt.verify(token, secretKey, (err, user) => {
       if (err) {
@@ -38,7 +39,7 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
     res.sendStatus(401); // Unauthorized
   }
 };
-42-110 export const signToken = (username: string, email: string, _id: unknown) => {
+export const signToken = (username: string, email: string, _id: unknown) => {
   const payload = { username, email, _id };
   const secretKey = process.env.JWT_SECRET_KEY || 'default_secret';
   return jwt.sign(payload, secretKey, { expiresIn: '1h' });
@@ -103,4 +104,4 @@ app.post('/login', loginUser);
 
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(Server running on port ${PORT}));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
