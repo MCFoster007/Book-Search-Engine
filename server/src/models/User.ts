@@ -1,5 +1,9 @@
-import { Schema, model, type Document } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
+
 import bcrypt from 'bcrypt';
+
+
+
 
 // import schema from Book.js
 import bookSchema from './Book.js';
@@ -57,7 +61,6 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password: string) {
   return await bcrypt.compare(password, this.password);
 };
-
 
 // when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
 userSchema.virtual('bookCount').get(function () {

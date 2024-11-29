@@ -1,4 +1,5 @@
-import { saveBook } from '../controllers/user-controller.js';
+// import Book from '../models/index.js';
+// import User from '../models/index.js';
 import { Book, User } from '../models/index.js';
 import { signToken, AuthenticationError } from '../services/auth.js'; 
 
@@ -32,13 +33,15 @@ interface AddBookArgs {
 }
 
 interface SaveBookArgs {
-  BookId: string;
+  input:{
+  bookId: string;
   bookText: string;
+  }
 }
 
 interface RemoveBookArgs {
-  BookId: string;
   bookId: string;
+  bookText: string;
 }
 
 const resolvers = {
@@ -118,21 +121,22 @@ const resolvers = {
       throw AuthenticationError;
       ('You need to be logged in!');
     },
-    saveBook: async (_parent: any, { bookId}: AddBookArgs, context: any) => {
+    saveBook: async (_parent: any, { input }: SaveBookArgs,context: any) => {
       if (context.user) {
+        const { bookId, bookText } = input; // Destructure bookId and bookText from input
+    
         return User.findOneAndUpdate(
           { _id: context.user._id },
-          
-            { $addToSet: { savedBooks: { bookId, bookText } } }, // Adjust based on schema
-            { new: true, runValidators: true }
-          );
+          { $addToSet: { savedBooks: { bookId, bookText } } }, // Adjust based on schema
+          { new: true, runValidators: true }
+        );
       }
-      throw AuthenticationError;
+      throw new AuthenticationError('You need to be logged in!'); // Corrected the throw statement
     },
-    removeBook: async (_parent: any, { BookId }: BookArgs, context: any) => {
+    removeBook: async (_parent: any, { bookId }: RemoveBookArgs, context: any) => {
       if (context.user) {
         const book = await Book.findOneAndDelete({
-          _id: BookId,
+          _id: bookId,
           BookAuthor: context.user.username,
         });
 

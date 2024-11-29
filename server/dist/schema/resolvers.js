@@ -1,3 +1,5 @@
+// import Book from '../models/index.js';
+// import User from '../models/index.js';
 import { Book, User } from '../models/index.js';
 import { signToken, AuthenticationError } from '../services/auth.js';
 const resolvers = {
@@ -61,17 +63,18 @@ const resolvers = {
             throw AuthenticationError;
             ('You need to be logged in!');
         },
-        saveBook: async (_parent, { bookId }, context) => {
+        saveBook: async (_parent, { input }, context) => {
             if (context.user) {
+                const { bookId, bookText } = input; // Destructure bookId and bookText from input
                 return User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { savedBooks: { bookId, bookText } } }, // Adjust based on schema
                 { new: true, runValidators: true });
             }
-            throw AuthenticationError;
+            throw new AuthenticationError('You need to be logged in!'); // Corrected the throw statement
         },
-        removeBook: async (_parent, { BookId }, context) => {
+        removeBook: async (_parent, { bookId }, context) => {
             if (context.user) {
                 const book = await Book.findOneAndDelete({
-                    _id: BookId,
+                    _id: bookId,
                     BookAuthor: context.user.username,
                 });
                 if (!book) {

@@ -33,6 +33,7 @@ const typeDefs = gql`
 
   input SaveBookInput {
     bookId: ID!
+    bookText: String!
     title: String!
     authors: [String]
     description: String
