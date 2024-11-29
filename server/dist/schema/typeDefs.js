@@ -2,64 +2,58 @@ import { gql } from 'graphql-tag';
 const typeDefs = gql `
   # Types
   type Book {
-    id: ID!
+    bookId: ID!
+    authors: [String]
+    description: String
     title: String!
-    author: String!
+    image: String
+    link: String
   }
 
-  type Role {
-    name: String!
+  type Auth {
+    token: String!
+    user: User!
   }
 
   type User {
-    id: ID!
-    name: String!
-    age: Int!
-    isAuthor: Boolean
-    role: String!
-    savedBooks: [Book] # Relation: A user can save books
+    _id: ID!
+    username: String!
+    email: String!
+    bookCount: Int!
+    savedBooks: [Book]
   }
 
   # Input Types
   input CreateUserInput {
-    name: String!
-    age: Int!
-    isAuthor: Boolean
-    role: String!
-  }
-
-  input UpdateUserInput {
-    id: ID!
-    name: String
-    age: Int
-    isAuthor: Boolean
-    role: String
-  }
-
-  input DeleteUserInput {
-    id: ID!
+    username: String!
+    email: String!
+    password: String!
   }
 
   input SaveBookInput {
-    id: ID!
+    bookId: ID!
     title: String!
-    author: String!
+    authors: [String]
+    description: String
+    image: String
+    link: String
   }
 
   # Queries
   type Query {
-    books: [Book]                     # Fetch all books
-    returnBook: Book                  # Return a single book
-    user(id: ID!): User!              # Fetch a user by ID
-    userByName(name: String!): User!  # Fetch a user by name
+    books: [Book]
+    returnBook(id: ID!): Book
+    user(id: ID!): User
+    userByName(name: String!): User
+    me: User
   }
 
   # Mutations
   type Mutation {
-    createUser(newUser: CreateUserInput!): User       # Create a new user
-    updateUser(updatedUser: UpdateUserInput!): User  # Update an existing user
-    deleteUser(delUser: DeleteUserInput!): User      # Delete a user
-    saveBook(userId: ID!, book: SaveBookInput!): User # Save a book for a user
+    addUser(input: CreateUserInput!): Auth
+    login(email: String!, password: String!): Auth
+    saveBook(input: SaveBookInput!): User
+    removeBook(bookId: ID!): User
   }
 `;
 export default typeDefs;
