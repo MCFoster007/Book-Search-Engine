@@ -42,10 +42,8 @@ const typeDefs = gql `
 
   # Queries
   type Query {
-    books: [Book]
-    returnBook(id: ID!): Book
-    user(id: ID!): User
-    userByName(name: String!): User
+    users: [User]
+    user(username: String): User
     me: User
   }
 

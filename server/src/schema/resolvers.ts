@@ -3,21 +3,26 @@ import { signToken, AuthenticationError } from "../services/auth.js";
 
 const resolvers = {
   Query: {
+    //tested and worked
     users: async () => {
-      return User.find().populate("books");
+      return User.find().populate("savedBooks");
     },
+    //tested and worked
     user: async (_parent: any, { username }: { username: string }) => {
-      return User.findOne({ username }).populate("books");
+      
+      return User.findOne({ username }).populate("savedBooks");
     },
+    //tested and worked
     me: async (_parent: any, _args: any, context: any) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("books");
+        return User.findOne({ _id: context.user._id }).populate("savedBooks");
       }
       throw new AuthenticationError("Could not authenticate user.");
     },
   },
   Mutation: {
     addUser: async (
+      //tested and worked
       _parent: any,
       {
         input,
@@ -27,6 +32,7 @@ const resolvers = {
       const token = signToken(user.username, user.email, user._id);
       return { token, user };
     },
+    //tested zND worked
     login: async (
       _parent: any,
       { email, password }: { email: string; password: string }
