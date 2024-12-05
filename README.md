@@ -51,17 +51,17 @@ About App
 
 ## About The Project
 
-This project is a Kanban board application with a secure login system. Users authenticate via a login page using JSON Web Tokens (JWT), enabling secure access to manage tasks. The application ensures secure storage of JWTs for authenticated sessions, automatic redirection for unauthorized access, and session expiration after inactivity for enhanced security.
+This project is a refactored Google Books search engine that transitions from a RESTful API to a GraphQL API using Apollo Server. Built on the MERN stack (MongoDB, Express.js, React, Node.js), it allows users to search for books via the Google Books API and save their favorite searches to a personalized list. Designed for avid readers, this app provides a seamless way to discover new books and keep track of titles to purchase for your reading journey.
 
-[Walk-Thru](https://youtu.be/X3BnoY_5Xas)
+[Walk-Thru]()
 
-![landing page](./client/public/images/landingpage.png)
+![](./)
 
-![login in page](./client/public/images/logininpage.png)
+![](./)
 
-![create ticket](./client/public/images/createticket.png)
+![]](.)
 
-![ticket page](./client/public/images/ticketpage.png)
+![](.)
 
 
 This project was built using React, JS
