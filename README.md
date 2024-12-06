@@ -1,4 +1,4 @@
-# Kool-Kanban-
+# Book Search Engine
 
 <div align="center">
 
@@ -19,7 +19,7 @@ About App
   </p>
 </div>
 
-  [Render Deployment](https://kool-kanban.onrender.com) 
+  [Render Deployment](had difficulty)
 
       
 
@@ -53,15 +53,15 @@ About App
 
 This project is a refactored Google Books search engine that transitions from a RESTful API to a GraphQL API using Apollo Server. Built on the MERN stack (MongoDB, Express.js, React, Node.js), it allows users to search for books via the Google Books API and save their favorite searches to a personalized list. Designed for avid readers, this app provides a seamless way to discover new books and keep track of titles to purchase for your reading journey.
 
-[Walk-Thru]()
+[Walk-Thru](https://youtu.be/hRxMg29lfLE)
 
-![](./)
+![Signup](./Assets/images/signup.png)
 
-![](./)
+![Login](./Assets/images/login.png)
 
-![]](.)
+![Compass DB](./Assets/images/compass.png)
 
-![](.)
+![Search Books](./Assets/images/searchforbooks.png)
 
 
 This project was built using React, JS
@@ -73,13 +73,13 @@ This project was built using React, JS
 
 [![Javascript](https://img.shields.io/badge/Language-JavaScript-ff0000?style=plastic&logo=JavaScript&logoWidth=10)](https://javascript.info/)
 [![CSS](https://img.shields.io/badge/Language-CSS-ff8000?style=plastic&logo=CSS3&logoWidth=10)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![Node.js](https://img.shields.io/badge/Framework-Node.js-ffff00?style=plastic&logo=Node.js&logoWidth=10)](https://nodejs.org/en/)
+[![React](https://img.shields.io/badge/language-React-ffff00?style=plastic&logo=React&logoWidth=10)](https://react.org/en/)
 [![Express](https://img.shields.io/badge/Framework-Express-80ff00?style=plastic&logo=Express&logoWidth=10)](https://expressjs.com/)
-[![npm](https://img.shields.io/badge/Tool-npm-00ff00?style=plastic&logo=npm&logoWidth=10)](https://www.npmjs.com/)
+[![MongoDB](https://img.shields.io/badge/Database-Mongodb-00ff00?style=plastic&logo=mongodb&logoWidth=10)](https://www.mongodb.com/)
 [![VS Code](https://img.shields.io/badge/IDE-VSCode-0000ff?style=plastic&logo=VisualStudioCode&logoWidth=10)](https://code.visualstudio.com/docs)
-[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-8000ff?style=plastic&logo=PostgreSQL&logoWidth=10)](https://www.postgresql.org/docs/)
+[![GraphQL](https://img.shields.io/badge/Database-GraphQL-8000ff?style=plastic&logo=Graphql&logoWidth=10)](https://www.postgresql.org/docs/)
 [![TypeScript](https://img.shields.io/badge/Language-TypeScript-007ACC?style=plastic&logo=typescript&logoWidth=10)](https://www.typescriptlang.org/)
-[![pg](https://img.shields.io/badge/Package-pg-0984e3?style=plastic&logo=postgresql&logoWidth=10)](https://www.npmjs.com/package/pg)
+[![Vite](https://img.shields.io/badge/Package-Vite-0984e3?style=plastic&logo=vite&logoWidth=10)](https://www.npmjs.com/package/vite)
 [![Nodemon](https://img.shields.io/badge/DevDependency-Nodemon-d63031?style=plastic&logo=nodemon&logoWidth=10)](https://www.npmjs.com/package/nodemon)
 [![JWT](https://img.shields.io/badge/Package-JWT-000000?style=plastic&logo=jsonwebtokens&logoWidth=10)](https://jwt.io/)
 
@@ -91,7 +91,7 @@ This project was built using React, JS
 
 ## Getting Started
 
-Once completely built, this application will function as a deployed app on Netlify.
+Once completely built, this application will function as a deployed app on Render.
 
 ### Local Installation / Testing
 
@@ -110,14 +110,17 @@ npm i
 3. Launch the app in development environment
 
 ```
-npm run start
+npm run build && npm run develop
 ```
 
 4. It will show running on 
 ```
 localhost:3000 in your browser
 ```
-
+5. GraphQL will brunning on  
+```
+http://localhost:3001/graphql
+```
 #### MVP
 
 
