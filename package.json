@@ -17,7 +17,8 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "concurrently": "^8.2.0"
-  
- 
+  },
+  "dependencies": {
+    "graphql-tag": "^2.12.6"
   }
 }
