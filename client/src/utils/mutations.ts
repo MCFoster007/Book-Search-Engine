@@ -12,24 +12,18 @@ mutation Login($email: String!, $password: String!) {
 }
 `;
 export const ADD_USER = gql`
-mutation AddUser($input: CreateUserInput!) {
-    addUser(input: $input) {
+mutation AddUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
       token
       user {
         _id
-        username
-        email
-        bookCount
-        savedBooks {
-          bookId
-          title
-        }
+        username 
       }
     }
   }
 `;
 
-export const SAVE_THOUGHT = gql`
+export const SAVE_BOOK = gql`
 mutation SaveBook($input: SaveBookInput!) {
     saveBook(input: $input) {
       _id

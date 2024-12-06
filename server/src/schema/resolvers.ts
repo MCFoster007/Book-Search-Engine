@@ -25,10 +25,10 @@ const resolvers = {
       //tested and worked
       _parent: any,
       {
-        input,
-      }: { input: { username: string; email: string; password: string } }
+        username, email, password
+      }:  { username: string; email: string; password: string } 
     ) => {
-      const user = await User.create({ ...input });
+      const user = await User.create({ username, email, password});
       const token = signToken(user.username, user.email, user._id);
       return { token, user };
     },
