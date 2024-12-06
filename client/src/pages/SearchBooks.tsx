@@ -8,11 +8,11 @@ import {
   Card,
   Row
 } from 'react-bootstrap';
-import { ADD_USER, LOGIN, REMOVE_BOOK, SAVE_BOOK } from '../utils/mutations';
+import { SAVE_BOOK, REMOVE_BOOK, ADD_USER, LOGIN } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 //TODO #2 DELETE THE IMPORT LINES THE NEXT TWO IMPORT
-// import { searchGoogleBooks } from '../utils/API';
+import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 import type { Book } from '../models/Book';
 import type { GoogleAPIBook } from '../models/GoogleAPIBook';
@@ -27,14 +27,14 @@ const SearchBooks = () => {
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
   const [saveBook] = useMutation(SAVE_BOOK);
   const [removeBook] = useMutation(REMOVE_BOOK);
-  const [addUser = useMutation(ADD_USER);
+  const [addUser] = useMutation(ADD_USER); 
   const [login] = useMutation(LOGIN);
   //TODO CREATE USE MUTATION FOR THE OTHER THREE more times
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
     return () => saveBookIds(savedBookIds);
-  });
+  }, [savedBookIds]);
 
   // create method to search for books and set state on form submit
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -45,8 +45,8 @@ const SearchBooks = () => {
     }
 
     try {
-      // const response = await searchGoogleBooks(searchInput);
-      SearchBooks(searchInput);
+      const response = await searchGoogleBooks(searchInput);
+// searchedBooks(searchInput);
       if (!response.ok) {
         throw new Error('something went wrong!');
       }
@@ -82,9 +82,9 @@ const SearchBooks = () => {
 //savebook will change tko new state
 /////OFFICE HOURS******
     try {
-      const data = await saveBook(bookToSave);
+      const data= await saveBook({ variables: { book: bookToSave } });
 
-      if (!data.ok) {
+      if (!data) {
         throw new Error('something went wrong!');
       }
 
