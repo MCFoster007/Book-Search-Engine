@@ -165,12 +165,12 @@ This project is licensed under the MIT license.
 
 Project Links:
 
-[Github Repository](https://github.com/MCFoster007/Kool-Kanban-)
+[Github Repository](https://github.com/MCFoster007/Book-Search-Engine)
 
-[Github Pages Deployment]( https://mcfoster007.github.io//)
+[Github Pages Deployment](https://mcfoster007.github.io/Book-Search-Engine/)
 
 
-[Render Deployment](https://kool-kanban.onrender.com) 
+[Render Deployment](https://book-search-engine-62or.onrender.com)  Difficulty to launch
 
 
 
