@@ -33,13 +33,12 @@ const typeDefs = gql`
 
   input SaveBookInput {
     bookId: ID!
-    bookText: String!
     title: String!
     authors: [String]
     description: String
     image: String
     link: String
-  }
+  }gjit 
 
   # Queries
   type Query {

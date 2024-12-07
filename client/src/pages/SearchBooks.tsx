@@ -8,7 +8,7 @@ import {
   Card,
   Row
 } from 'react-bootstrap';
-import { SAVE_BOOK, REMOVE_BOOK, ADD_USER, LOGIN } from '../utils/mutations';
+import { SAVE_BOOK } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 //TODO #2 DELETE THE IMPORT LINES THE NEXT TWO IMPORT
@@ -26,9 +26,9 @@ const SearchBooks = () => {
   // create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
   const [saveBook] = useMutation(SAVE_BOOK);
-  const [removeBook] = useMutation(REMOVE_BOOK);
-  const [addUser] = useMutation(ADD_USER); 
-  const [login] = useMutation(LOGIN);
+  // const [removeBook] = useMutation(REMOVE_BOOK);
+  // const [addUser] = useMutation(ADD_USER); 
+  // const [login] = useMutation(LOGIN);
   //TODO CREATE USE MUTATION FOR THE OTHER THREE more times
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
@@ -46,7 +46,7 @@ const SearchBooks = () => {
 
     try {
       const response = await searchGoogleBooks(searchInput);
-// searchedBooks(searchInput);
+      
       if (!response.ok) {
         throw new Error('something went wrong!');
       }
@@ -82,7 +82,7 @@ const SearchBooks = () => {
 //savebook will change tko new state
 /////OFFICE HOURS******
     try {
-      const data= await saveBook({ variables: { book: bookToSave } });
+      const data= await saveBook({ variables: { input: bookToSave } });
 
       if (!data) {
         throw new Error('something went wrong!');

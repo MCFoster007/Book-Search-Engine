@@ -29,7 +29,13 @@ mutation SaveBook($input: SaveBookInput!) {
       _id
       username
       email
-      bookCount
+      savedBooks {
+        title
+        bookId
+        authors
+        description
+        image
+      }
     }
   }
 `;
