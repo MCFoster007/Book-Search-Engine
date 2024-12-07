@@ -38,7 +38,7 @@ const typeDefs = gql`
     description: String
     image: String
     link: String
-  }gjit 
+  }
 
   # Queries
   type Query {
